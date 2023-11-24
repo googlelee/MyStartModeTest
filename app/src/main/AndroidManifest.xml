@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mystartmodetest">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyStartModeTest"
+        tools:targetApi="31">
+
+        <!-- 总结来说 名字带task的模式就与taskAffinity属性有关 因为它需要用这个属性来识别对应的task
+        FLAG_ACTIVITY_CLEAR_TASK例外 即使配合taskAffinity也无效 需要与FLAG_ACTIVITY_NEW_TASK同时使用-->
+
+        <!-- 这两个属性结合可以在新的task中启动Activity 与单独设置launchMode="singleInstance"的区别是
+        前者再启动之后的Activity也会在新task中 而后者只有被设置的Activity在单独的栈中
+        有多个task的时候，会分为前台task和后台task，一直按返回键会先将前台task清空 再清后台task-->
+        <!-- android:launchMode="singleTask"-->
+        <!-- android:taskAffinity="com.example.mystartmodetest"-->
+        <!-- 这两个属性结合时taskAffinity无效 不会新建task-->
+        <!-- android:launchMode="singleTop"-->
+        <!-- android:taskAffinity="com.example.mystartmodetest.task"-->
+        <activity
+            android:name=".ThirdActivity"
+            android:exported="false" />
+        <!-- 修改此属性以验证_NEW_TASK的作用 此属性不修改时默认全局一直为项目包名 所以实际_NEW_TASK无效-->
+        <!-- flag和此属性配合实现在新task中启动Activity 与singleTask相似-->
+        <!-- 不同的是singleTask有Activity时会destroy其上所有其他Activity  而此处不会-->
+        <!-- android:taskAffinity="com.example.mystartmodetest.task"-->
+        <activity
+            android:name=".SecondActivity"
+            android:taskAffinity="com.example.mystartmodetest.task"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
