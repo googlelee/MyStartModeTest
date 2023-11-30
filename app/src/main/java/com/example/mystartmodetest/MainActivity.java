@@ -1,6 +1,7 @@
 package com.example.mystartmodetest;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,9 +22,25 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                // 显式跳转
+//                Intent intent = new Intent();
+//                intent.setClassName(MainActivity.this, "com.example.mystartmodetest.SecondActivity");
+
+                // 隐式跳转
+//                Intent intent = new Intent(Intent.ACTION_DIAL); // 拨号页面
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt("num", 1);
+                intent.putExtra("name", "haojli");
+                intent.putExtras(bundle);
+                intent.setAction("haojli");
+                Uri uri = Uri.parse("haojli://1111");
+                intent.setData(uri);
+//                intent.addCategory(Intent.CATEGORY_BROWSABLE);
                 startActivity(intent);
             }
         });

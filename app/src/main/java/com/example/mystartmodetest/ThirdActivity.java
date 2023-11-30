@@ -1,6 +1,7 @@
 package com.example.mystartmodetest;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,19 +22,21 @@ public class ThirdActivity extends AppCompatActivity {
         textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 // 单独使用FLAG_ACTIVITY_CLEAR_TOP会清除包括自己在内以及之上的Activity  并重开一个当前Activity
                 // 与FLAG_ACTIVITY_SINGLE_TOP一起用就可以实现类似singleTask的效果 不会重开当前Activity
 //                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_ALL_APPS);
+//                Intent intent = new Intent();
+//                intent.setAction(Intent.ACTION_ALL_APPS);
                 startActivity(intent);
             }
         });
 
-        Log.d(TAG, "onCreate: " + getTaskId());
+        Log.d(TAG, "onCreate: " + getTaskId()+ " " + getIntent().getExtras().getInt("num") + " "
+                +getIntent().getStringExtra("name"));
     }
 
     @Override

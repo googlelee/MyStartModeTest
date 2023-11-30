@@ -27,15 +27,27 @@
         <!-- android:taskAffinity="com.example.mystartmodetest.task"-->
         <activity
             android:name=".ThirdActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="haojli"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="haojli"/>
+            </intent-filter>
+        </activity>
         <!-- 修改此属性以验证_NEW_TASK的作用 此属性不修改时默认全局一直为项目包名 所以实际_NEW_TASK无效-->
         <!-- flag和此属性配合实现在新task中启动Activity 与singleTask相似-->
         <!-- 不同的是singleTask有Activity时会destroy其上所有其他Activity  而此处不会-->
         <!-- android:taskAffinity="com.example.mystartmodetest.task"-->
         <activity
             android:name=".SecondActivity"
-            android:taskAffinity="com.example.mystartmodetest.task"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="haojli"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

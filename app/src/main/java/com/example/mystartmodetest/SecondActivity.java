@@ -22,7 +22,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
-                // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 // 单独使用FLAG_ACTIVITY_CLEAR_TASK即使修改了taskAffinity属性也无效，必须与FLAG_ACTIVITY_NEW_TASK一起才能生效
                 // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
