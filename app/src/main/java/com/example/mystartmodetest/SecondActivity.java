@@ -28,7 +28,6 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         Log.d(TAG, "onCreate: " + getTaskId());
     }
 
